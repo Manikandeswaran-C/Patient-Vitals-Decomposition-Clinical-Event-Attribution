@@ -1,0 +1,120 @@
+======================================================================
+ PHYSIOLOGICAL ANOMALY ATTRIBUTION REPORT
+======================================================================
+ Patient ID      : P001
+ Generated At    : 2026-05-27T17:47:10.268702
+ Monitoring Start: 2026-05-27 00:00:00
+ Monitoring End  : 2026-05-27 23:59:00
+ Duration        : 24.0 hours
+ Total Samples   : 1440
+======================================================================
+
+[ CURRENT VITAL SIGN STATUS ]
+     heart_rate            : 73.11 bpm             [NORMAL]  (Normal: 60–100 bpm)
+     systolic_bp           : 116.97 mmHg            [NORMAL]  (Normal: 90–140 mmHg)
+     diastolic_bp          : 78.99 mmHg            [NORMAL]  (Normal: 60–90 mmHg)
+     spo2                  : 98.53 %               [NORMAL]  (Normal: 95–100 %)
+     respiratory_rate      : 15.08 breaths/min     [NORMAL]  (Normal: 12–20 breaths/min)
+     temperature           : 36.53 °C              [NORMAL]  (Normal: 36.5–37.5 °C)
+     etco2                 : 40.79 mmHg            [NORMAL]  (Normal: 35–45 mmHg)
+
+[ ACTIVE CLINICAL ALERTS ]
+  No active clinical alerts.
+
+[ SIGNAL CLEANING & ARTIFACT SUMMARY ]
+  Vital Sign             Disconnects    Motion Noise   Impossible Clipped
+  ────────────────────── ────────────── ────────────── ──────────────────
+  heart_rate             0              24             0
+  systolic_bp            0              26             0
+  diastolic_bp           0              16             0
+  spo2                   0              13             0
+  respiratory_rate       0              10             0
+  temperature            0              13             0
+  etco2                  14             15             0
+
+[ SIGNAL STABILITY ASSESSMENT ]
+  Overall Stability: BORDERLINE
+  Avg. Residual Variance: 27.6%
+  Note: Moderate residual variance — some signals show irregular patterns.
+  Unstable Vitals: spo2, etco2
+
+[ ANOMALY ATTRIBUTION INSIGHTS ]
+
+  [ACUTE_EVENT] — 49 event(s)
+    Detected 49 acute event(s) in etco2 and respiratory_rate. Sudden transient deviations suggest arrhythmia, pain episodes, procedural artifacts, or acute physiological stress responses.
+
+  [BASELINE_SHIFT] — 1 event(s)
+    Detected 1 baseline shift event(s) primarily in spo2. This suggests a sustained change in the patient's physiological baseline, potentially indicating disease progression or response to treatment.
+
+[ INTER-SIGNAL RELATIONSHIP INSIGHTS ]
+  • heart_rate and systolic_bp are moderately positively correlated (r=0.679), consistent with sympathetic co-activation.
+  • heart_rate and diastolic_bp are strongly positively correlated (r=0.769), consistent with physiological coupling.
+  • heart_rate and spo2 are moderately positively correlated (r=0.412), consistent with physiological coupling.
+  • heart_rate and respiratory_rate are moderately negatively correlated (r=-0.611), consistent with cardiopulmonary coupling.
+  • heart_rate and temperature are moderately positively correlated (r=0.569), consistent with physiological coupling.
+  • heart_rate and etco2 are moderately positively correlated (r=0.428), consistent with physiological coupling.
+  • systolic_bp and diastolic_bp are strongly positively correlated (r=0.822), consistent with physiological coupling.
+  • systolic_bp and spo2 are moderately positively correlated (r=0.632), consistent with physiological coupling.
+  • systolic_bp and respiratory_rate are strongly negatively correlated (r=-0.794), consistent with physiological coupling.
+  • systolic_bp and temperature are moderately positively correlated (r=0.430), consistent with physiological coupling.
+  • systolic_bp and etco2 are moderately positively correlated (r=0.468), consistent with physiological coupling.
+  • diastolic_bp and spo2 are moderately positively correlated (r=0.488), consistent with physiological coupling.
+  • diastolic_bp and respiratory_rate are moderately negatively correlated (r=-0.649), consistent with physiological coupling.
+  • diastolic_bp and temperature are moderately positively correlated (r=0.415), consistent with physiological coupling.
+  • diastolic_bp and etco2 are moderately positively correlated (r=0.430), consistent with physiological coupling.
+  • spo2 and respiratory_rate are strongly negatively correlated (r=-0.731), consistent with ventilation-oxygenation coupling.
+  • respiratory_rate and temperature are moderately negatively correlated (r=-0.440), consistent with physiological coupling.
+  • respiratory_rate and etco2 are moderately negatively correlated (r=-0.470), consistent with physiological coupling.
+  • heart_rate predicts systolic_bp with a 2-sample lag (p=0.0000). Changes in heart_rate precede changes in systolic_bp by ~2 minute(s).
+  • heart_rate predicts spo2 with a 2-sample lag (p=0.0000). Changes in heart_rate precede changes in spo2 by ~2 minute(s).
+  • heart_rate predicts respiratory_rate with a 2-sample lag (p=0.0000). Changes in heart_rate precede changes in respiratory_rate by ~2 minute(s).
+  • systolic_bp predicts heart_rate with a 9-sample lag (p=0.0000). Changes in systolic_bp precede changes in heart_rate by ~9 minute(s).
+  • systolic_bp predicts spo2 with a 2-sample lag (p=0.0000). Changes in systolic_bp precede changes in spo2 by ~2 minute(s).
+  • respiratory_rate predicts spo2 with a 2-sample lag (p=0.0000). Changes in respiratory_rate precede changes in spo2 by ~2 minute(s).
+  • respiratory_rate predicts systolic_bp with a 2-sample lag (p=0.0000). Changes in respiratory_rate precede changes in systolic_bp by ~2 minute(s).
+  • spo2 predicts systolic_bp with a 2-sample lag (p=0.0000). Changes in spo2 precede changes in systolic_bp by ~2 minute(s).
+  • respiratory_rate predicts heart_rate with a 5-sample lag (p=0.0000). Changes in respiratory_rate precede changes in heart_rate by ~5 minute(s).
+  • systolic_bp predicts respiratory_rate with a 5-sample lag (p=0.0001). Changes in systolic_bp precede changes in respiratory_rate by ~5 minute(s).
+  • spo2 predicts respiratory_rate with a 8-sample lag (p=0.0034). Changes in spo2 precede changes in respiratory_rate by ~8 minute(s).
+  • spo2 predicts heart_rate with a 10-sample lag (p=0.0038). Changes in spo2 precede changes in heart_rate by ~10 minute(s).
+  • respiratory_rate predicts diastolic_bp with a 9-sample lag (p=0.0061). Changes in respiratory_rate precede changes in diastolic_bp by ~9 minute(s).
+  • diastolic_bp predicts systolic_bp with a 6-sample lag (p=0.0165). Changes in diastolic_bp precede changes in systolic_bp by ~6 minute(s).
+  • temperature predicts spo2 with a 9-sample lag (p=0.0350). Changes in temperature precede changes in spo2 by ~9 minute(s).
+  • systolic_bp leads heart_rate by 1 sample(s) (cross-correlation: -0.729). Monitor systolic_bp as an early warning indicator.
+  • respiratory_rate leads heart_rate by 1 sample(s) (cross-correlation: 0.575). Monitor respiratory_rate as an early warning indicator.
+  • systolic_bp and respiratory_rate are synchronously coupled (cross-correlation: -0.556).
+  • diastolic_bp leads respiratory_rate by 30 sample(s) (cross-correlation: 0.485). Monitor diastolic_bp as an early warning indicator.
+  • systolic_bp leads spo2 by 1 sample(s) (cross-correlation: 0.436). Monitor systolic_bp as an early warning indicator.
+
+[ TEMPORAL EVENT TIMELINE (9 event blocks) ]
+    1. [CRITICAL] ACUTE_EVENT            in etco2           from 04:51 to 04:59 (9 mins)
+       → Acute irregular event in etco2 (residual spike Z-score: 5.6). A sudden unexplained cardiorespiratory spike or transient crisis event.
+    2. [CRITICAL] ACUTE_EVENT            in etco2           from 06:33 to 06:42 (10 mins)
+       → Acute irregular event in etco2 (residual spike Z-score: 5.4). A sudden unexplained cardiorespiratory spike or transient crisis event.
+    3. [MODERATE] ACUTE_EVENT            in spo2            at 08:41
+       → Acute irregular event in spo2 (residual spike Z-score: 2.4). A sudden unexplained cardiorespiratory spike or transient crisis event.
+    4. [CRITICAL] ACUTE_EVENT            in systolic_bp     from 08:57 to 08:58 (2 mins)
+       → Acute irregular event in systolic_bp (residual spike Z-score: 7.4). A sudden unexplained cardiorespiratory spike or transient crisis event.
+    5. [CRITICAL] ACUTE_EVENT            in respiratory_rate from 16:36 to 16:57 (22 mins)
+       → Acute irregular event in respiratory_rate (residual spike Z-score: 2.9). A sudden unexplained cardiorespiratory spike or transient crisis event.
+    6. [MODERATE] ACUTE_EVENT            in spo2            at 17:05
+       → Acute irregular event in spo2 (residual spike Z-score: 1.8). A sudden unexplained cardiorespiratory spike or transient crisis event.
+    7. [MODERATE] BASELINE_SHIFT         in spo2            at 17:06
+       → Gradual baseline shift detected in spo2 (trend deviation Z-score: 1.5). Suggests a developing clinical trend, e.g. onset of fever, sustained hemodynamic drift, or medication response.
+    8. [MODERATE] ACUTE_EVENT            in spo2            at 17:07
+       → Acute irregular event in spo2 (residual spike Z-score: 1.8). A sudden unexplained cardiorespiratory spike or transient crisis event.
+    9. [CRITICAL] ACUTE_EVENT            in diastolic_bp    from 17:17 to 17:27 (11 mins)
+       → Acute irregular event in diastolic_bp (residual spike Z-score: 6.0). A sudden unexplained cardiorespiratory spike or transient crisis event.
+
+[ CLINICAL RECOMMENDATIONS ]
+  → Trend-based alert: Review medication changes, fluid balance, and disease progression.
+  → Acute events detected: Review ECG, check line/sensor placement for artifacts.
+
+[ KEY FINDING ]
+  Primary anomaly driver: etco2
+  etco2 shows the highest contribution to anomaly scores — this vital sign deserves the closest monitoring attention.
+
+======================================================================
+ END OF REPORT — For clinical decision support only.
+ Always confirm findings with qualified clinical assessment.
+======================================================================
