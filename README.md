@@ -42,7 +42,7 @@ PhysioAnomalyPipeline/
 
 ## 🔄 Pipeline flow (high level)
 
-```mermaid
+
 flowchart LR
   A[Data: Synthetic or CSV] --> B[Cleaning & Imputation]
   B --> C[Normalization]
