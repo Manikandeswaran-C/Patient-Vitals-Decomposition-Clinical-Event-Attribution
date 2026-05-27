@@ -40,28 +40,6 @@ PhysioAnomalyPipeline/
 └── notebooks/         → Beginner-friendly Jupyter tutorial
 ```
 
-## 🔄 Pipeline flow (high level)
-
-
-flowchart LR
-  A[Data: Synthetic or CSV] --> B[Cleaning & Imputation]
-  B --> C[Normalization]
-  C --> D[Feature Engineering]
-  D --> E[STL Decomposition]
-  E --> F[Residual-based Detection (Z/IQR)]
-  D --> G[Isolation Forest Detection]
-  D --> H[LSTM Autoencoder (optional)]
-  F --> I[Ensemble Voting]
-  G --> I
-  H --> I
-  I --> J[SHAP Attribution + Feature Importance]
-  E --> K[Lead-Lag + Correlation]
-  E --> L[Granger Predictive Relationships]
-  J --> M[Clinical Interpreter]
-  K --> M
-  L --> M
-  M --> N[Report + Plots + Dashboard]
-```
 
 ## 🩺 Vital Signs Monitored
 
