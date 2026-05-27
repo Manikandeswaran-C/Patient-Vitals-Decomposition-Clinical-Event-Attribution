@@ -238,5 +238,5 @@ jupyter notebook notebooks/tutorial.ipynb
 ### STL Decomposition
 
 ![STL](docs/stl_decomposition.png)
-![STL](docs/stl_decomposition.png2)
+![STL](docs/stl_decomposition2.png)
 
