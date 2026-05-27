@@ -1,6 +1,5 @@
-# 🏥 Interpretable Physiological Time-Series Anomaly Attribution Pipeline
+# 🏥 Interpretable Physiological Time-Series Anomaly Attribution 
 
-A **complete, beginner-friendly** end-to-end system for ICU and remote patient monitoring data.
 
 ## 🎯 Project Objective
 
