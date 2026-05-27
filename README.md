@@ -1,14 +1,28 @@
+
 # 🏥 Interpretable Physiological Time-Series Anomaly Attribution 
 
 
-## 🎯 Project Objective
+## 🏥 PhysioAnomalyPipeline
 
-This pipeline goes **beyond anomaly detection**. It:
-- 📊 **Decomposes** physiological signals into trend, seasonal, and residual components
-- 🔍 **Detects** abnormalities using statistical + ML + deep learning methods
-- 🧠 **Explains WHY** abnormalities occur using SHAP attribution
-- 🔗 **Identifies relationships** between vital signs (correlation + Granger causality)
-- 📋 **Generates** clinically understandable insights in plain English
+**Interpretable anomaly detection + attribution for physiological monitoring** (ICU + remote vitals).
+
+
+> **Problem**: Continuous vital-sign streams contain artifacts and clinically important events.  
+> **Solution**: Detect anomalies *and* explain which signals drove them, then summarize findings in a clinician-friendly report/dashboard.
+
+<!-- Optional badges (update links/License as needed) -->
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
+![Streamlit](https://img.shields.io/badge/Streamlit-App-red)
+![License](https://img.shields.io/badge/License-MIT-green)
+
+## What this project does
+
+- **Clean & normalize** multivariate vital signals (missing data, sensor disconnects, motion artifacts)
+- **Decompose** signals (STL trend/seasonal/residual + wavelets)
+- **Detect anomalies** (statistical + Isolation Forest + optional LSTM autoencoder)
+- **Explain anomalies** with **SHAP-based attribution** (interpretable AI)
+- **Analyze relationships** (correlation, lead–lag, Granger “predictive causality”)
+- **Generate outputs**: plots + a plain-English clinical-style report + Streamlit dashboard
 
 ## 🏗️ Architecture
 
@@ -26,6 +40,29 @@ PhysioAnomalyPipeline/
 └── notebooks/         → Beginner-friendly Jupyter tutorial
 ```
 
+## 🔄 Pipeline flow (high level)
+
+```mermaid
+flowchart LR
+  A[Data: Synthetic or CSV] --> B[Cleaning & Imputation]
+  B --> C[Normalization]
+  C --> D[Feature Engineering]
+  D --> E[STL Decomposition]
+  E --> F[Residual-based Detection (Z/IQR)]
+  D --> G[Isolation Forest Detection]
+  D --> H[LSTM Autoencoder (optional)]
+  F --> I[Ensemble Voting]
+  G --> I
+  H --> I
+  I --> J[SHAP Attribution + Feature Importance]
+  E --> K[Lead-Lag + Correlation]
+  E --> L[Granger Predictive Relationships]
+  J --> M[Clinical Interpreter]
+  K --> M
+  L --> M
+  M --> N[Report + Plots + Dashboard]
+```
+
 ## 🩺 Vital Signs Monitored
 
 | Signal | Normal Range | Clinical Significance |
@@ -38,29 +75,42 @@ PhysioAnomalyPipeline/
 | Temperature | 36.5–37.5 °C | Metabolic/infection state |
 | ETCO2 | 35–45 mmHg | Ventilation adequacy |
 
-## 🚀 Quick Start (CLI)
+## ✨ Demo (optional)
+
+- **Streamlit dashboard**: run `streamlit run app.py`
+- **CLI report**: run `python -X utf8 run_pipeline.py`
+
+If you have a short screen recording/GIF, add it here:
+`docs/demo.gif`
+
+## 🧰 Setup
 
 ```bash
-# 1. Install dependencies
+# Create and activate a virtual environment (recommended)
+python -m venv .venv
+
+# Windows (PowerShell)
+.venv\Scripts\Activate.ps1
+
+# Install dependencies
 pip install -r requirements.txt
-
-# 2. Run the quickstart runner (with UTF-8 stream support)
-python -X utf8 run_pipeline.py
-
-# 3. Or run the main pipeline module directly
-python -X utf8 -m pipeline.main_pipeline --patient-id P001
-
-# 4. Open the Jupyter tutorial (recommended for beginners)
-jupyter notebook notebooks/tutorial.ipynb
 ```
 
-The CLI quick start will:
-- generate a full 24h synthetic ICU record (`data.generator.PhysioDataGenerator`)
-- run the entire pipeline (`pipeline.main_pipeline.PhysioAnomalyPipeline`)
-- write plots under `outputs/plots/`
-- write a plain-text clinical report under `outputs/reports/{patient_id}_report.txt`
+## ▶️ How to run (CLI)
 
-## 🖥️ Interactive Dashboard (Streamlit UI)
+### Quickstart (synthetic)
+
+```bash
+python -X utf8 run_pipeline.py
+```
+
+### Run the pipeline module (synthetic)
+
+```bash
+python -X utf8 -m pipeline.main_pipeline --patient-id P001
+```
+
+## ▶️ How to run (Streamlit UI)
 
 For an interactive, clinician-friendly dashboard, launch the Streamlit app:
 
@@ -68,12 +118,12 @@ For an interactive, clinician-friendly dashboard, launch the Streamlit app:
 streamlit run app.py
 ```
 
-From the sidebar you can:
+In the sidebar you can:
 - choose between **Synthetic Generator** and **Upload CSV File**
 - tune anomaly detector thresholds (Z-score, Isolation Forest contamination, ensemble votes)
 - optionally enable the **LSTM Autoencoder** detector (slower, uses PyTorch)
 
-The UI exposes:
+The UI includes:
 - a KPI overview (patient ID, anomaly count, stability badge, primary anomaly driver)
 - clinical alert cards and recommendations
 - interactive STL decomposition plots
@@ -111,7 +161,7 @@ Minimum expected columns (after mapping):
 - `temperature`
 - `etco2` (optional but recommended)
 
-## 📂 Output Directory Structure
+## 📦 Outputs (what gets generated)
 
 Running the pipeline will create an `outputs/` directory with the following structure:
 ```
@@ -130,40 +180,25 @@ outputs/
     └── {patient_id}_report.txt     # Plain-English clinical explanation report
 ```
 
-## 📦 Requirements
+### Repo hygiene (recommended)
 
-- Python 3.8+
-- See `requirements.txt` for all dependencies
+- **Keep the repository lightweight**: don’t commit the full `outputs/` folder.
+- If you want a small demo artifact in the repo, commit **only one** example report and **1–2** images (or a GIF) under a `docs/` folder.
 
-## 🧩 Key Concepts (For Beginners)
+## 🧠 Interpretable AI (what “explainable” means here)
 
-### What is Signal Decomposition?
-Breaking a signal (e.g., heart rate over time) into:
-- **Trend**: Long-term direction (rising? falling?)
-- **Seasonal**: Repeating patterns (day/night cycles)
-- **Residual**: What's left — the "noise" or unexpected events
+- **Attribution**: when an anomaly is detected, the system estimates **which vital signs contributed most** to that anomaly (via SHAP on the Isolation Forest model).
+- **Clinical summarization**: findings are rendered into a structured report (alerts, timelines, recommendations) designed for quick review.
 
-### What is Anomaly Detection?
-Finding time points where measurements are "unusually" different from expected.
+## ⚠️ Limitations / challenges (optional but honest)
 
-### What is Anomaly Attribution?
-Figuring out **which vital signs caused** or **contributed most** to an anomaly.
-We use SHAP (SHapley Additive exPlanations) — a game-theory-based method.
+- **Not medical advice**: this is decision support, not diagnosis.
+- **Granger ≠ true causality**: it’s predictive, sensitive to preprocessing/stationarity.
+- **SHAP explanation scope**: explanations reflect the chosen model (Isolation Forest) and feature set; they are not guaranteed “ground truth.”
+- **Synthetic vs real-world**: synthetic generator is great for demos, but real ICU/remote data has more device quirks, irregular sampling, and clinical confounders.
+- **LSTM detector trade-offs**: can improve temporal modeling but adds training time and instability if data quality is poor.
 
-### What is Granger Causality?
-Testing if one signal helps **predict** another signal. If HR predicts BP changes,
-HR may "Granger-cause" BP in this patient's data.
-
-## 📊 Output
-
-The pipeline produces:
-1. **Anomaly timeline** — when anomalies occurred
-2. **SHAP attribution plots** — which vitals caused each anomaly
-3. **Correlation heatmaps** — how vitals relate to each other
-4. **Clinical report** — plain English explanation of findings
-5. **Decomposition plots** — trend/seasonal/residual for each vital
-
-## 🔬 Methods Used
+## 🔬 Methods used (quick list)
 
 | Task | Method | Why? |
 |------|--------|------|
@@ -176,3 +211,9 @@ The pipeline produces:
 | Relationships | Pearson/Spearman Correlation | Linear/monotonic relationships |
 | Relationships | Granger Causality | Temporal predictive relationships |
 | Insights | Rule-based NLG | Clinically validated decision rules |
+
+## 📚 Notebook
+
+```bash
+jupyter notebook notebooks/tutorial.ipynb
+```
