@@ -2,7 +2,7 @@
 # 🏥 Interpretable Physiological Time-Series Anomaly Attribution 
 
 
-## 🏥 PhysioAnomalyPipeline
+## 🏥 PhysioAnomaly
 
 **Interpretable anomaly detection + attribution for physiological monitoring** (ICU + remote vitals).
 
@@ -217,3 +217,26 @@ outputs/
 ```bash
 jupyter notebook notebooks/tutorial.ipynb
 ```
+## 📸 Dashboard Preview
+
+### Streamlit Dashboard
+
+![Dashboard](docs/dashboard.png)
+
+### SHAP Attribution
+
+![SHAP](docs/shap_plot.png)
+
+![SHAP](docs/shap_plot2.png)
+
+### Anomaly Timeline
+
+![Timeline](docs/anomaly_timeline.png)
+![Timeline](docs/anomaly_timeline2.png)
+
+
+### STL Decomposition
+
+![STL](docs/stl_decomposition.png)
+![STL](docs/stl_decomposition.png2)
+
